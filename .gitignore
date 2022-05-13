@@ -1,0 +1,14 @@
+ethereum/node_modules
+ethereum/.env
+ethereum/coverage
+ethereum/coverage.json
+ethereum/typechain
+
+#Hardhat files
+ethereum/cache
+ethereum/artifacts
+
+#client
+client/node_modules
+client/.next
+
