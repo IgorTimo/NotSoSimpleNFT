@@ -1,83 +1,84 @@
-import { ethers } from "ethers";
-import { useState } from "react";
-import YourCollectible from "../YourCollectible";
+/* eslint-disable no-console */
+/* eslint-disable no-alert */
+import { ethers } from 'ethers'
+import React, { useState } from 'react'
+import YourCollectible from '../YourCollectible'
 
-const Index = () => {
-  const [contractAddress, setContractAddress] = useState("");
-  const [tokens, setTokens] = useState([]);
-  const [message, setMessage] = useState("Здесь ничего нет, а хотелось бы ...");
+function Index() {
+  const [contractAddress, setContractAddress] = useState('')
+  const [tokens, setTokens] = useState([])
+  const [message, setMessage] = useState('Здесь ничего нет, а хотелось бы ...')
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
-    setTokens([]);
-    const { ethereum } = window;
+    event.preventDefault()
+    setTokens([])
+    const { ethereum } = window
     if (!ethereum) {
-      alert("Use brouser with metamask");
-      return;
+      alert('Use brouser with metamask')
+      return
     }
     if (!ethereum.isConnected()) {
-      alert("Connect or login to your metamask and refresh the page");
-      return;
+      alert('Connect or login to your metamask and refresh the page')
+      return
     }
-    const chainId = await ethereum.request({ method: "eth_chainId" });
-    const targetChainId = "0x4";
+    const chainId = await ethereum.request({ method: 'eth_chainId' })
+    const targetChainId = '0x4'
     if (chainId !== targetChainId) {
-      alert("You are not connected to the target chain");
-      return;
+      alert('You are not connected to the target chain')
+      return
     }
     const accounts = await ethereum.request({
-      method: "eth_requestAccounts",
-    });
-    const currentAccount = accounts[0];
+      method: 'eth_requestAccounts',
+    })
+    const currentAccount = accounts[0]
 
     try {
-      setMessage("Ждёмс...");
-      const yourCollectible = YourCollectible(contractAddress);
+      setMessage('Ждёмс...')
+      const yourCollectible = YourCollectible(contractAddress)
       const countOfTokens = ethers.utils.formatUnits(
         await yourCollectible.balanceOf(currentAccount),
-        0
-      );
+        0,
+      )
       if (+countOfTokens === 0) {
-        setMessage("По этому аккаунту ничего нет :(");
-        return;
+        setMessage('По этому аккаунту ничего нет :(')
+        return
       }
-      console.log("countOfTokens: ", countOfTokens);
+      console.log('countOfTokens: ', countOfTokens)
       const tokensIds = (
         await Promise.all(
           Array(+countOfTokens)
             .fill(null)
             .map((value, index) =>
-              yourCollectible.tokenOfOwnerByIndex(currentAccount, index)
-            )
+              yourCollectible.tokenOfOwnerByIndex(currentAccount, index),
+            ),
         )
-      ).map((id) => ethers.utils.formatUnits(id, 0));
-      console.log("tokensIds: ", tokensIds);
+      ).map((id) => ethers.utils.formatUnits(id, 0))
+      console.log('tokensIds: ', tokensIds)
       const tokensURLs = await Promise.all(
-        tokensIds.map((id) => yourCollectible.tokenURI(id))
-      );
-      console.log("tokensURLs: ", tokensURLs);
+        tokensIds.map((id) => yourCollectible.tokenURI(id)),
+      )
+      console.log('tokensURLs: ', tokensURLs)
       const tokensInfo = await Promise.all(
-        tokensURLs.map((url) => fetch(url).then((response) => response.json()))
-      );
-      console.log("tokensInfo: ", tokensInfo);
-      setTokens(tokensInfo);
+        tokensURLs.map((url) => fetch(url).then((response) => response.json())),
+      )
+      console.log('tokensInfo: ', tokensInfo)
+      setTokens(tokensInfo)
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
-  const renderTokens = () => {
-    return tokens.map((token, index) => (
+  const renderTokens = () =>
+    tokens.map((token) => (
       <div
         className=" text-center m-4 inline-block border-2 border-black rounded-xl"
-        key={index}
+        key={`${token.name}-${token.description}`}
       >
         <h1 className=" text-3xl">{token.name}</h1>
         <h2 className=" text-xl">{token.description}</h2>
         <img className="p-4" src={token.image} alt={token.description} />
       </div>
-    ));
-  };
+    ))
 
   return (
     <div className="m-4">
@@ -92,7 +93,10 @@ const Index = () => {
           type="text"
           name="contractAddress"
         />
-        <button className="m-2 p-2 text-xl border-2 border-black rounded-xl hover:bg-black hover:text-white">
+        <button
+          type="submit"
+          className="m-2 p-2 text-xl border-2 border-black rounded-xl hover:bg-black hover:text-white"
+        >
           Забирай мой аккаунт и показывай что там!!
         </button>
       </form>
@@ -104,7 +108,7 @@ const Index = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Index;
+export default Index

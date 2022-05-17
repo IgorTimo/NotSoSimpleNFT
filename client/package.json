@@ -4,20 +4,46 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npm run open-browser && next dev",
+    "build": "next build",
+    "start": "next start",
+    "open-browser": "open http://localhost:3000",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier --write \"{,!(node_modules)/**/}*.js\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "ethers": "^5.6.5",
     "next": "^12.1.6",
     "react": "^18.1.0",
-    "react-dom": "^18.1.0"
+    "react-dom": "^18.1.0",
+    "hardhat": "^2.9.5",
+    "ethereum-waffle": "^3.4.4",
+    "ethers": "^5.6.6",
+    "@nomiclabs/hardhat-ethers": "^2.0.6",
+    "@nomiclabs/hardhat-waffle": "^2.0.3"
   },
   "devDependencies": {
+    "@imaginary-cloud/eslint-config-react": "^2.0.1",
+    "@imaginary-cloud/prettier-config": "^1.0.0",
     "autoprefixer": "^10.4.7",
+    "chai": "^4.3.6",
+    "eslint": "^8.15.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jest": "^26.2.2",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-next": "0.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
+    "eslint-plugin-react-hooks": "^4.5.0",
     "postcss": "^8.4.13",
+    "prettier": "^2.6.2",
     "tailwindcss": "^3.0.24"
-  }
+  },
+  "prettier": "@imaginary-cloud/prettier-config"
 }

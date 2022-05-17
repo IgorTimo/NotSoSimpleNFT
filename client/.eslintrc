@@ -1,0 +1,23 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+      },
+      "extends": ["@imaginary-cloud/react"],
+      "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "sourceType": "module"
+      },
+      "plugins": ["react"],
+      "rules": {
+        "react/react-in-jsx-scope": "off",
+        "react/prop-types": "off",
+        "react/function-component-definition": "off",
+        "arrow-body-style": "off",
+        // "quotes": ["error", "single"],
+        // "indent": ["error", 2],
+        // "no-multi-spaces": ["error"]
+    }
+}

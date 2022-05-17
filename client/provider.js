@@ -1,5 +1,5 @@
-const { ethers } = require("ethers");
+const { ethers } = require('ethers')
 
-const provider = new ethers.providers.InfuraProvider("rinkeby");
+const provider = new ethers.providers.InfuraProvider('rinkeby')
 
-export default provider;
+export default provider
