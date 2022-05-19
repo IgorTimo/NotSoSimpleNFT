@@ -1,11 +1,13 @@
 import React from 'react'
-import { Header } from './Header'
+import { useWeb3Context } from '../hooks/useWeb3Context'
+import { Navbar } from './Navbar'
 
 export const Layout = ({ children }) => {
+  const { contract } = useWeb3Context()
   return (
     <>
-      <Header />
-      <main>{children}</main>
+      <Navbar />
+      {contract && <main>{children}</main>}
     </>
   )
 }

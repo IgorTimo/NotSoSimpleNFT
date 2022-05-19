@@ -16,6 +16,8 @@
         "react/prop-types": "off",
         "react/function-component-definition": "off",
         "arrow-body-style": "off",
+        "no-unused-vars": 1,
+        "consistent-return": "off"
         // "quotes": ["error", "single"],
         // "indent": ["error", 2],
         // "no-multi-spaces": ["error"]
