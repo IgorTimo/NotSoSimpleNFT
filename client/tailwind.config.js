@@ -5,7 +5,11 @@ module.exports = {
     './TW_components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        'custom-sidenav-layout': 'auto 1fr',
+      },
+    },
   },
   plugins: [],
 }

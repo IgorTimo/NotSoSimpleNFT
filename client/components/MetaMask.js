@@ -61,7 +61,7 @@ export const MetaMask = () => {
     <div>
       <button
         type="button"
-        className="btn bg-green-400 hover:bg-green-600 mt-8"
+        className="btn bg-gray-400 hover:bg-gray-600 mt-8"
         onClick={enableEth}
       >
         Connect Wallet

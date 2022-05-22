@@ -17,7 +17,11 @@
         "react/function-component-definition": "off",
         "arrow-body-style": "off",
         "no-unused-vars": 1,
-        "consistent-return": "off"
+        "consistent-return": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off"
         // "quotes": ["error", "single"],
         // "indent": ["error", 2],
         // "no-multi-spaces": ["error"]
