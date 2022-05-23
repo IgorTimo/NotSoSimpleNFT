@@ -8,6 +8,11 @@ export const Web3Provider = ({ children }) => {
   const [provider, setProvider] = useState(null)
   const [account, setAccount] = useState('')
 
+  const newAccount = (accounts) => {
+    setContract(contract.connect(provider.getSigner(accounts[0])))
+    setAccount(accounts[0])
+  }
+
   // Listens for a change in account and updates state
   useEffect(() => {
     if (contract && provider) {
@@ -15,11 +20,6 @@ export const Web3Provider = ({ children }) => {
       return () => window.ethereum.removeListener('accountsChanged', newAccount)
     }
   })
-
-  const newAccount = (accounts) => {
-    setContract(contract.connect(provider.getSigner(accounts[0])))
-    setAccount(accounts[0])
-  }
 
   // Listens for network changes to reload the page
   useEffect(() => {

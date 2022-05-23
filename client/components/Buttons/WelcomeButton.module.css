@@ -1,0 +1,39 @@
+.button__type_welcome {
+    position: relative;
+    margin: 20px;
+    padding: 20px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: white;
+    transition: 300ms;
+    border: 1px solid #E8E1F4;
+    border-radius: 8px;
+    background-color: #E8E1F4;
+    color: #4527A0;
+  }
+  .button__type_welcome:hover {
+    border: 1px solid transparent;
+    background: #E8E1F4 url(https://i.postimg.cc/wBXGXbWN/pixel.png);
+    transition-delay: 0.8s;
+    background-size: 180px;
+    animation: animate 600ms steps(8) forwards;
+    color: #E8E1F4;
+  }
+  .button__type_welcome:last-of-type {
+    border: 1px solid #4527A0;
+  }
+  .button__type_welcome:last-of-type:hover {
+    background: #4527A0 url(https://i.postimg.cc/FzBWFtKM/pixel2.png);
+  }
+
+  
+  @keyframes animate {
+    0% {
+      background-position-y: 0;
+    }
+    100% {
+      background-position-y: -480px;
+    }
+  }

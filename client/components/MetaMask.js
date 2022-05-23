@@ -1,11 +1,12 @@
 import { useWeb3Context } from '../hooks/useWeb3Context'
+import { WelcomeButton } from './Buttons/WelcomeButton'
 
 const abi = []
 
 export const MetaMask = () => {
   const { setContract, setProvider, setAccount, ethers } = useWeb3Context()
 
-  async function enableEth() {
+  const handleEnableEth = async () => {
     try {
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
@@ -57,15 +58,5 @@ export const MetaMask = () => {
     }
   }
 
-  return (
-    <div>
-      <button
-        type="button"
-        className="btn bg-gray-400 hover:bg-gray-600 mt-8"
-        onClick={enableEth}
-      >
-        Connect Wallet
-      </button>
-    </div>
-  )
+  return <WelcomeButton onClick={handleEnableEth} />
 }
