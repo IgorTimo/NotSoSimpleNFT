@@ -1,7 +1,7 @@
 const { ethers } = require('ethers')
 const { default: provider } = require('./provider')
 
-const address = '0xC0D33739f4b7944aA099342C87A9d67eCD38E7A0'
+const address = '0x8e02826cb2a1c124249587644857847855839c74'
 
 const abi = [
   { inputs: [], stateMutability: 'nonpayable', type: 'constructor' },
@@ -102,9 +102,23 @@ const abi = [
     type: 'function',
   },
   {
+    inputs: [],
+    name: 'getAllTokens',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
     inputs: [{ internalType: 'uint256', name: 'tokenId', type: 'uint256' }],
     name: 'getApproved',
     outputs: [{ internalType: 'address', name: '', type: 'address' }],
+    stateMutability: 'view',
+    type: 'function',
+  },
+  {
+    inputs: [{ internalType: 'address', name: 'holder', type: 'address' }],
+    name: 'getTokensOf',
+    outputs: [{ internalType: 'string', name: '', type: 'string' }],
     stateMutability: 'view',
     type: 'function',
   },
@@ -254,6 +268,6 @@ const abi = [
   },
 ]
 
-const YourCollectible = (address) => new ethers.Contract(address, abi, provider)
+const yourCollectible = new ethers.Contract(address, abi, provider)
 
-export default YourCollectible
+export default yourCollectible
