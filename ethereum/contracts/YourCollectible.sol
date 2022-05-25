@@ -65,4 +65,73 @@ contract YourCollectible is
     {
         return super.supportsInterface(interfaceId);
     }
+
+    // TODO надо бы добавить пагинацию
+    function getAllTokens() external view returns(string memory) {
+        uint totalSupply = this.totalSupply();
+        if (totalSupply == 0) {
+            return '{"tokens":[]}';
+        }
+
+        bytes memory b;
+
+        for (uint i = 1; i <= totalSupply; i++) {
+            string memory closeTag = i == totalSupply ? '"]' : '"],';
+            b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
+        }
+
+        b = abi.encodePacked('{"tokens":[', b, ']}');
+
+        return string(b);
+    }
+
+    function getTokensOf(address holder) external view returns(string memory) {
+        uint holderBalance = balanceOf(holder);
+        if (holderBalance == 0) {
+            return '{"tokens":[]}';
+        }
+
+        uint counted;
+        bytes memory b;
+
+        for (uint i = 1; i <= this.totalSupply(); i++) {
+            if (ownerOf(i) == holder) {
+                counted++;
+                string memory closeTag = counted == holderBalance ? '"]' : '"],';
+                b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
+                if (counted == holderBalance) {
+                    break;
+                }
+            }
+        }
+
+        b = abi.encodePacked('{"tokens":[', b, ']}');
+
+        return string(b);
+    }
+
+    // https://stackoverflow.com/questions/47129173/how-to-convert-uint-to-string-in-solidity
+    function uint2str(uint256 _i) internal pure returns(string memory str) {
+        if (_i == 0) {
+            return "0";
+        }
+
+        uint256 j = _i;
+        uint256 length;
+        while (j != 0) {
+            length++;
+            j /= 10;
+        }
+
+        bytes memory bstr = new bytes(length);
+        uint256 k = length;
+
+        j = _i;
+        while (j != 0) {
+            bstr[--k] = bytes1(uint8(48 + j % 10));
+            j /= 10;
+        }
+
+        str = string(bstr);
+    }
 }
