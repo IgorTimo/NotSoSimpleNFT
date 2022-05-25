@@ -7,8 +7,7 @@ import { Header } from './Header'
 export const Layout = ({ children }) => {
   const { items } = navigation
   const [activePage, setActivePage] = useState(items[0].label)
-  const { contract } = useWeb3Context()
-
+  const { account } = useWeb3Context()
   return (
     <div className="h-screen grid grid-cols-custom-sidenav-layout">
       <Navbar
@@ -18,7 +17,7 @@ export const Layout = ({ children }) => {
       />
       <div className="flex flex-col">
         <Header />
-        {contract && <main>{children}</main>}
+        {account && <main>{children}</main>}
       </div>
     </div>
   )

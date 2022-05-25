@@ -7,7 +7,7 @@ export const web3ContextInitialValues = {
   updateContextState: () => {},
   contract: null,
   provider: null,
-  account: '',
+  account: null,
 }
 
 export const Web3Provider = ({ children }) => {
@@ -29,6 +29,9 @@ export const Web3Provider = ({ children }) => {
         account: accounts[0],
       }
     })
+    if (!accounts[0]) {
+      window.sessionStorage.removeItem('account')
+    }
   }
 
   // Listens for a change in account and updates state
