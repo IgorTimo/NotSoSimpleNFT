@@ -17,6 +17,10 @@ contract YourCollectible is
 
     Counters.Counter private _tokenIdCounter;
 
+    uint private constant MIN_PAGE_NUMBER = 1;
+    uint private constant DEFAULT_PAGE_SIZE = 20;
+    uint private constant MAX_PAGE_SIZE = 100;
+
     constructor() ERC721("YourCollectible", "YCB") {}
 
     function _baseURI() internal pure override returns (string memory) {
@@ -66,17 +70,30 @@ contract YourCollectible is
         return super.supportsInterface(interfaceId);
     }
 
-    // TODO надо бы добавить пагинацию
-    function getAllTokens() external view returns(string memory) {
+    function getAllTokens(uint _pageNumber, uint _pageSize) external view returns(string memory) {
         uint totalSupply = this.totalSupply();
         if (totalSupply == 0) {
             return '{"tokens":[]}';
         }
 
+        uint pageSize = _pageSize == 0
+            ? DEFAULT_PAGE_SIZE
+            : _pageSize > MAX_PAGE_SIZE
+                ? MAX_PAGE_SIZE
+                : _pageSize;
+        uint pageNumber = _pageNumber == 0 ? MIN_PAGE_NUMBER : _pageNumber;
+
+        uint skip = pageSize * (pageNumber - 1);
+        if (skip > totalSupply) {
+            return '{"tokens":[]}';
+        }
+        uint takeTo = skip + pageSize;
+        takeTo = takeTo > totalSupply ? totalSupply : takeTo;
+
         bytes memory b;
 
-        for (uint i = 1; i <= totalSupply; i++) {
-            string memory closeTag = i == totalSupply ? '"]' : '"],';
+        for (uint i = skip + 1; i <= takeTo; i++) {
+            string memory closeTag = i == takeTo ? '"]' : '"],';
             b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
         }
 
@@ -85,21 +102,47 @@ contract YourCollectible is
         return string(b);
     }
 
-    function getTokensOf(address holder) external view returns(string memory) {
+    function getTokensOf(address holder, uint _pageNumber, uint _pageSize) external view returns(string memory) {
+        if (holder == address(0)) {
+            return '{"tokens":[]}';
+        }
+
         uint holderBalance = balanceOf(holder);
         if (holderBalance == 0) {
             return '{"tokens":[]}';
         }
 
+        uint pageSize = _pageSize == 0
+            ? DEFAULT_PAGE_SIZE
+            : _pageSize > MAX_PAGE_SIZE
+                ? MAX_PAGE_SIZE
+                : _pageSize;
+        uint pageNumber = _pageNumber == 0 ? MIN_PAGE_NUMBER : _pageNumber;
+
+        uint skip = pageSize * (pageNumber - 1);
+        if (skip > holderBalance) {
+            return '{"tokens":[]}';
+        }
+
         uint counted;
+        uint skiped;
+        uint taked;
         bytes memory b;
 
         for (uint i = 1; i <= this.totalSupply(); i++) {
             if (ownerOf(i) == holder) {
                 counted++;
-                string memory closeTag = counted == holderBalance ? '"]' : '"],';
+
+                if (skiped < skip) {
+                    skiped++;
+                    continue;
+                }
+
+                taked++;
+                bool isThatsAll = counted == holderBalance || taked == pageSize;
+                string memory closeTag = isThatsAll ? '"]' : '"],';
                 b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
-                if (counted == holderBalance) {
+                if (isThatsAll) {
                     break;
                 }
             }
