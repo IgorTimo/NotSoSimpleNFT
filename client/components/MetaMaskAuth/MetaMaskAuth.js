@@ -76,13 +76,18 @@ export const MetaMaskAuth = () => {
   }
 
   const logout = () => {
-    updateWeb3ContextState(web3ContextInitialValues)
     window.sessionStorage.removeItem('account')
+    updateWeb3ContextState(web3ContextInitialValues)
+    setLoading(false)
   }
 
   useEffect(() => {
-    // eslint-disable-next-line no-unused-expressions
-    !!window.sessionStorage.getItem('account') && login()
+    const isMetaMaskAuthenticated = !!window.sessionStorage.getItem('account')
+    if (isMetaMaskAuthenticated) {
+      login()
+    } else {
+      logout()
+    }
   }, [])
 
   // eslint-disable-next-line no-nested-ternary
