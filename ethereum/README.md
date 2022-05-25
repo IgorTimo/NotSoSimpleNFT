@@ -1,15 +1,17 @@
-# Basic Sample Hardhat Project
+# not_so_simple_nft
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Чтобы получить адрес и ABI смартконтракта для использования на фронте, можно использовать следующие способы:
 
-Try running some of the following tasks:
-
+1) запустить команду
 ```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
+npm run build
 ```
+в этом случае необходимые данные будут помещены в файл  
+**client/your_collectible.json** (внутренняя структура файла чуть более сложная )
+
+2) запустить команду
+```shell
+npm run deploy
+```
+в этом случае необходимые данные будут помещены в файл  
+**ethereum/deployments/localhost/YourCollectible.json**
