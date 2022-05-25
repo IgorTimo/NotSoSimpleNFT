@@ -1,5 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import truncateEthAddress from 'truncate-eth-address'
+import React, { useEffect, useState } from 'react'
 import { useWeb3Context } from '../../hooks/useWeb3Context'
 import { ArrowRight, LogoutIcon } from '../../icons'
 import styles from './AuthButton.module.css'
@@ -9,13 +11,16 @@ const abi = []
 
 export const MetaMaskAuth = () => {
   const {
-    updateContextState,
+    updateContextState: updateWeb3ContextState,
     ethers,
     account: currentAccount,
   } = useWeb3Context()
 
-  const handleEnableEth = async () => {
+  const [isLoading, setLoading] = useState(true)
+
+  const login = async () => {
     try {
+      setLoading(true)
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const [account] = await window.ethereum.request({
@@ -52,10 +57,10 @@ export const MetaMaskAuth = () => {
         const signer = provider.getSigner(account)
         const contract = new ethers.Contract(contractAddress, abi, signer)
 
-        updateContextState({
+        window.sessionStorage.setItem('account', contract.signer._address)
+        updateWeb3ContextState({
           provider,
           contract,
-          // eslint-disable-next-line no-underscore-dangle
           account: contract.signer._address,
         })
       } else if (window.web3) {
@@ -65,19 +70,26 @@ export const MetaMaskAuth = () => {
       }
     } catch (e) {
       console.log(e)
+    } finally {
+      setLoading(false)
     }
   }
 
-  const handleLogout = () => {
-    updateContextState(web3ContextInitialValues)
+  const logout = () => {
+    updateWeb3ContextState(web3ContextInitialValues)
+    window.sessionStorage.removeItem('account')
   }
 
-  return !currentAccount ? (
-    <button
-      type="button"
-      className={styles.button__type_login}
-      onClick={handleEnableEth}
-    >
+  useEffect(() => {
+    // eslint-disable-next-line no-unused-expressions
+    !!window.sessionStorage.getItem('account') && login()
+  }, [])
+
+  // eslint-disable-next-line no-nested-ternary
+  return isLoading ? (
+    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
+  ) : !currentAccount ? (
+    <button type="button" className={styles.button__type_login} onClick={login}>
       <span className="mr-2">Connect wallet</span>
       <ArrowRight />
     </button>
@@ -87,7 +99,7 @@ export const MetaMaskAuth = () => {
         <Jazzicon diameter={30} seed={jsNumberForAddress(currentAccount)} />
       </div>
       <span className="mr-2">{truncateEthAddress(currentAccount)}</span>
-      <button type="button" onClick={handleLogout}>
+      <button type="button" onClick={logout}>
         <LogoutIcon />
       </button>
     </div>

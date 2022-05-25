@@ -7,7 +7,7 @@ export const web3ContextInitialValues = {
   updateContextState: () => {},
   contract: null,
   provider: null,
-  account: '',
+  account: null,
 }
 
 export const Web3Provider = ({ children }) => {
