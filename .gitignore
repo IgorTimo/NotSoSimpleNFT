@@ -11,4 +11,5 @@ ethereum/artifacts
 #client
 client/node_modules
 client/.next
+client/your_collectible.json
 

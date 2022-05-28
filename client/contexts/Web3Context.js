@@ -3,14 +3,35 @@ import { ethers } from 'ethers'
 
 export const Web3Context = createContext()
 
+export const web3ContextInitialValues = {
+  updateContextState: () => {},
+  contract: null,
+  provider: null,
+  account: null,
+}
+
 export const Web3Provider = ({ children }) => {
-  const [contract, setContract] = useState(null)
-  const [provider, setProvider] = useState(null)
-  const [account, setAccount] = useState('')
+  const [contextState, setContextState] = useState({
+    ...web3ContextInitialValues,
+    ethers,
+  })
+  const { contract, provider } = contextState
+
+  const updateContextState = (newContext) => {
+    setContextState((prevContext) => ({ ...prevContext, ...newContext }))
+  }
 
   const newAccount = (accounts) => {
-    setContract(contract.connect(provider.getSigner(accounts[0])))
-    setAccount(accounts[0])
+    setContextState((state) => {
+      return {
+        ...state,
+        contract: contract.connect(provider.getSigner(accounts[0])),
+        account: accounts[0],
+      }
+    })
+    if (!accounts[0]) {
+      window.sessionStorage.removeItem('account')
+    }
   }
 
   // Listens for a change in account and updates state
@@ -34,13 +55,8 @@ export const Web3Provider = ({ children }) => {
     <Web3Context.Provider
       // eslint-disable-next-line react/jsx-no-constructed-context-values
       value={{
-        ethers,
-        provider,
-        setProvider,
-        contract,
-        setContract,
-        account,
-        setAccount,
+        ...contextState,
+        updateContextState,
       }}
     >
       {children}
