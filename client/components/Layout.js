@@ -5,16 +5,10 @@ import { navigation } from '../routes/navigation'
 import { Header } from './Header'
 
 export const Layout = ({ children }) => {
-  const { items } = navigation
-  const [activePage, setActivePage] = useState(items[0].label)
   const { account } = useWeb3Context()
   return (
     <div className="h-screen grid grid-cols-custom-sidenav-layout">
-      <Navbar
-        activePage={activePage}
-        setActivePage={setActivePage}
-        navigation={navigation}
-      />
+      <Navbar navigation={account ? navigation : []} />
       <div className="flex flex-col">
         <Header />
         {account && <main>{children}</main>}
