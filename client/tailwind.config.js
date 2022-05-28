@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'custom-sidenav-layout': 'auto 1fr',
+        'custom-sidenav-layout': '272px 1fr',
       },
     },
   },

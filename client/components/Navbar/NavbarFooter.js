@@ -5,7 +5,7 @@ export const NavbarFooter = () => {
   const { account } = useWeb3Context()
   const indicatorColor = account ? 'bg-green-700' : 'bg-red-600'
   return (
-    <div className="flex items-center mt-auto px-3 no-underline">
+    <div className="flex items-center mt-auto px-5 ">
       <h3 className="text-center py-1 mr-4">Account connected</h3>
       <span className="flex h-2 w-2">
         <span

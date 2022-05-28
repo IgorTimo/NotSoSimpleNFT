@@ -1,12 +1,15 @@
 import React from 'react'
 import Link from 'next/link'
 
-export const NavbarHeader = ({ title }) => {
+export const NavbarHeader = () => {
   return (
-    <div className="flex items-center ml-1 pb-8">
+    <div className="pl-5">
       <Link href="/">
-        <a className="text-xl font-bold pl-1 no-underline text-gray-50 hover:text-gray-100">
-          {title}
+        <a className="no-underline">
+          <div className="flex text-3xl text-gray-50 leading-8">
+            <h2 className="font-bold">👾 NFT</h2>
+            <p className="font-extralight">MONSTER</p>
+          </div>
         </a>
       </Link>
     </div>

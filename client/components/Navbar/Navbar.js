@@ -1,18 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavbarHeader } from './NavbarHeader'
 import { NavbarMenu } from './NavbarMenu'
 import { NavbarFooter } from './NavbarFooter'
+import { navigation } from '../../routes/navigation'
 
-export const Navbar = ({ activePage, setActivePage, navigation }) => {
-  const { items, label } = navigation
+export const Navbar = () => {
+  const defaultActivePageLabel = navigation[0].items[0].key
+  const [activePage, setActivePage] = useState(defaultActivePageLabel)
 
   return (
-    <div className="flex flex-col bg-gray-900 text-gray-50 px-6 py-4">
-      <NavbarHeader title={label} />
+    <div className="flex flex-col bg-gray-900 text-gray-50 py-7">
+      <NavbarHeader />
       <NavbarMenu
         activePage={activePage}
         setActivePage={setActivePage}
-        items={items}
+        navigationItems={navigation}
       />
       <NavbarFooter />
     </div>
