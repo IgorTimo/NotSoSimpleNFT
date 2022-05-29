@@ -5,7 +5,6 @@ import { NavbarFooter } from './NavbarFooter'
 
 export const Navbar = ({ navigation }) => {
   const [activePage, setActivePage] = useState('')
-  const hasNavigation = !!navigation.length
 
   const handleLogoClick = () => {
     setActivePage('')
@@ -14,13 +13,11 @@ export const Navbar = ({ navigation }) => {
   return (
     <div className="flex flex-col bg-gray-900 text-gray-50 py-7">
       <NavbarHeader onLogoClick={handleLogoClick} />
-      {hasNavigation && (
-        <NavbarMenu
-          activePage={activePage}
-          setActivePage={setActivePage}
-          navigationItems={navigation}
-        />
-      )}
+      <NavbarMenu
+        activePage={activePage}
+        setActivePage={setActivePage}
+        navigationItems={navigation}
+      />
 
       <NavbarFooter />
     </div>
