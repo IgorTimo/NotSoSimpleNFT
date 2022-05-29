@@ -12,6 +12,12 @@ module.exports = {
       transitionProperty: {
         height: 'height',
       },
+      colors: {
+        primaryGray: '#E5E5E5',
+        white: '#FFFFFF',
+        purpleLigth: '#E8E1F4',
+        purplePrimary: '#311B92',
+      },
     },
   },
   plugins: [],

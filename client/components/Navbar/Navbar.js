@@ -11,13 +11,15 @@ export const Navbar = ({ navigation }) => {
   }
 
   return (
-    <div className="flex flex-col bg-gray-900 text-gray-50 py-7">
-      <NavbarHeader onLogoClick={handleLogoClick} />
-      <NavbarMenu
-        activePage={activePage}
-        setActivePage={setActivePage}
-        navigationItems={navigation}
-      />
+    <div className="flex flex-col justify-between bg-[#FFFFFF] text-[#212121] py-7">
+      <div>
+        <NavbarHeader onLogoClick={handleLogoClick} />
+        <NavbarMenu
+          activePage={activePage}
+          setActivePage={setActivePage}
+          navigationItems={navigation}
+        />
+      </div>
 
       <NavbarFooter />
     </div>

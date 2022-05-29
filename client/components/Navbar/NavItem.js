@@ -22,7 +22,8 @@ export const NavItem = ({
     setIsPanelExpanded(!isPanelExpanded)
   }
 
-  const navItemActiveClassName = 'bg-gray-800 border-r-[5px] border-purple-700'
+  const navItemActiveClassName =
+    'bg-purpleLigth border-r-[5px] border-purplePrimary'
 
   const renderExpandableItem = () => (
     <Collapse
@@ -30,14 +31,16 @@ export const NavItem = ({
       onOpenClick={handlePanelExpand}
       isExpanded={isPanelExpanded}
       collapsibleClassName=""
-      titleClassName={`${link === router.pathname ? 'font-bold' : ''}`}
-      headerClassName="flex justify-between cursor-pointer items-center px-[24px] hover:bg-gray-700 h-10"
+      titleClassName={`${
+        link === router.pathname ? 'font-bold text-purplePrimary' : ''
+      }`}
+      headerClassName="flex justify-between cursor-pointer items-center px-[24px] hover:bg-purpleLigth h-10"
     >
       {items.map(({ path, label, key }) => {
         return (
           <Link key={`${label}${key}`} href={path}>
             <div
-              className={`flex pl-10 hover:bg-gray-700 items-center w-full h-10 cursor-pointer ${
+              className={`flex pl-10 hover:bg-purpleLigth items-center w-full h-10 cursor-pointer ${
                 activePage === path ? navItemActiveClassName : ''
               }`}
               onClick={() => handleLinkClick(path)}
