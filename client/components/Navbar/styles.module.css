@@ -1,0 +1,8 @@
+.box {
+    transform: rotate3d(-1, -1, 0, 0);
+    transition: all 700ms ease;
+  }
+  
+.box.flipped {
+    transform: rotate3d(-1, -1, 0, 360deg);
+}
