@@ -1,43 +1,47 @@
 import { routes } from './consts'
 
+const { gallery, transactions } = routes
+
 export const navigation = [
   {
     label: 'Gallery',
+    path: gallery.path,
     items: [
       {
-        path: routes.gallery.all.path,
         label: 'All',
-        key: routes.gallery.all.key,
+        path: gallery.all.path,
+        key: gallery.all.key,
       },
       {
-        path: routes.gallery.favourites.path,
         label: 'Favourites',
-        key: routes.gallery.favourites.key,
+        path: gallery.favourites.path,
+        key: gallery.favourites.key,
       },
       {
-        path: routes.gallery.new.path,
         label: 'New',
-        key: routes.gallery.new.key,
+        path: gallery.new.path,
+        key: gallery.new.key,
       },
     ],
   },
   {
     label: 'Transactions',
+    path: transactions.path,
     items: [
       {
-        path: routes.transactions.all.path,
         label: 'All',
-        key: routes.transactions.all.key,
+        path: transactions.all.path,
+        key: transactions.all.key,
       },
       {
-        path: routes.transactions.transferred.path,
         label: 'Transferred',
-        key: routes.transactions.transferred.key,
+        path: transactions.transferred.path,
+        key: transactions.transferred.key,
       },
       {
-        path: routes.transactions.sold.path,
         label: 'Sold',
-        key: routes.transactions.sold.key,
+        path: transactions.sold.path,
+        key: transactions.sold.key,
       },
     ],
   },

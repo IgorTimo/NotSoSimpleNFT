@@ -20,5 +20,5 @@ export const NavbarMenu = ({ activePage, setActivePage, navigationItems }) => {
     [navigationItems, setActivePage, activePage],
   )
 
-  return <nav className="pt-10">{navItems}</nav>
+  return <nav className="pt-11">{navItems}</nav>
 }

@@ -9,6 +9,9 @@ module.exports = {
       gridTemplateColumns: {
         'custom-sidenav-layout': '272px 1fr',
       },
+      transitionProperty: {
+        height: 'height',
+      },
     },
   },
   plugins: [],

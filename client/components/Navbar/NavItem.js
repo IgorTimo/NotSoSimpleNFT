@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { ExpandingPanel } from '../ExpandingPanel'
+import { useRouter } from 'next/router'
+import { Collapse } from '../Collapse'
 
 export const NavItem = ({
   activePage,
@@ -10,7 +11,8 @@ export const NavItem = ({
   items,
   navItemKey,
 }) => {
-  const [isPanelExpanded, setIsPanelExpanded] = useState(title === 'Gallery')
+  const router = useRouter()
+  const [isPanelExpanded, setIsPanelExpanded] = useState(false)
 
   const handleLinkClick = (linkTitle) => {
     setActivePage(linkTitle)
@@ -22,35 +24,37 @@ export const NavItem = ({
 
   const navItemActiveClassName = 'bg-gray-800 border-r-[5px] border-purple-700'
 
-  const renderItemWithChildren = () => (
-    <ExpandingPanel
+  const renderExpandableItem = () => (
+    <Collapse
       title={title}
-      onClick={handlePanelExpand}
+      onOpenClick={handlePanelExpand}
       isExpanded={isPanelExpanded}
-      headerClassName="flex items-center justify-between h-12 pr-7 font-semibold hover:bg-gray-700"
+      collapsibleClassName=""
+      titleClassName={`${link === router.pathname ? 'font-bold' : ''}`}
+      headerClassName="flex justify-between cursor-pointer items-center px-[24px] hover:bg-gray-700 h-10"
     >
       {items.map(({ path, label, key }) => {
         return (
           <Link key={`${label}${key}`} href={path}>
             <div
-              className={`flex pl-8 hover:bg-gray-700 items-center w-full h-12 ${
-                activePage === key ? navItemActiveClassName : ''
+              className={`flex pl-10 hover:bg-gray-700 items-center w-full h-10 cursor-pointer ${
+                activePage === path ? navItemActiveClassName : ''
               }`}
-              onClick={() => handleLinkClick(key)}
+              onClick={() => handleLinkClick(path)}
             >
               {label}
             </div>
           </Link>
         )
       })}
-    </ExpandingPanel>
+    </Collapse>
   )
 
   const renderNavItem = () => (
     <Link href={link}>
       <div
         onClick={() => handleLinkClick(navItemKey)}
-        className={`flex items-center font-semibold h-12 pr-7 text-gray-50 pl-5 hover:bg-gray-700 cursor-pointer ${
+        className={`flex items-center font-semibold h-10 pr-7 text-gray-50 pl-5 hover:bg-gray-700 cursor-pointer ${
           activePage === navItemKey ? navItemActiveClassName : ''
         }`}
       >
@@ -59,9 +63,18 @@ export const NavItem = ({
     </Link>
   )
 
+  useEffect(() => {
+    if (link === router.pathname) setIsPanelExpanded(true)
+  }, [link, router])
+
+  useEffect(() => {
+    const activeItem = items?.find((item) => item.path === router.asPath)
+    if (activeItem) setActivePage(activeItem.path)
+  }, [items, router, setActivePage])
+
   return (
     <div className="flex flex-col w-full">
-      {items ? renderItemWithChildren() : renderNavItem()}
+      {items ? renderExpandableItem() : renderNavItem()}
     </div>
   )
 }
