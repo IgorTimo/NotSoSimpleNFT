@@ -1,19 +1,18 @@
 import React, { useMemo } from 'react'
-import { NavItem } from './NavItem'
+import { NavItemContainer } from './NavItemContainer'
 
 export const NavbarMenu = ({ activePage, setActivePage, navigationItems }) => {
   const navItems = useMemo(
     () =>
-      navigationItems.map(({ path, label, items, key }) => {
+      navigationItems.map(({ path, label, items }) => {
         return (
-          <NavItem
+          <NavItemContainer
             key={label}
             activePage={activePage}
             link={path}
             title={label}
             setActivePage={setActivePage}
             items={items}
-            navItemKey={key}
           />
         )
       }),
