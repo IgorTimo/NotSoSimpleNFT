@@ -5,7 +5,11 @@ import { ThemeToggle } from '../ThemeToggle'
 export const NavbarFooter = () => {
   const { account } = useWeb3Context()
   const indicatorColor = account ? 'bg-green-700' : 'bg-red-600'
-  return <div className="pl-[24px]">{/* <ThemeToggle /> */}</div>
+  return (
+    <div className="pl-[24px]">
+      <ThemeToggle />
+    </div>
+  )
 }
 // TODO: индикатор подключения к веб3. вынести
 // {
