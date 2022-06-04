@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract YourCollectible is
     ERC721,
@@ -14,6 +15,7 @@ contract YourCollectible is
     Ownable
 {
     using Counters for Counters.Counter;
+    using Strings for uint256;
 
     Counters.Counter private _tokenIdCounter;
 
@@ -94,7 +96,7 @@ contract YourCollectible is
 
         for (uint i = skip + 1; i <= takeTo; i++) {
             string memory closeTag = i == takeTo ? '"]' : '"],';
-            b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
+            b = abi.encodePacked(b, '[', i.toString(), ',"', this.tokenURI(i), closeTag);
         }
 
         b = abi.encodePacked('{"tokens":[', b, ']}');
@@ -141,7 +143,7 @@ contract YourCollectible is
                 taked++;
                 bool isThatsAll = counted == holderBalance || taked == pageSize;
                 string memory closeTag = isThatsAll ? '"]' : '"],';
-                b = abi.encodePacked(b, '[', uint2str(i), ',"', this.tokenURI(i), closeTag);
+                b = abi.encodePacked(b, '[', i.toString(), ',"', this.tokenURI(i), closeTag);
                 if (isThatsAll) {
                     break;
                 }
@@ -151,30 +153,5 @@ contract YourCollectible is
         b = abi.encodePacked('{"tokens":[', b, ']}');
 
         return string(b);
-    }
-
-    // https://stackoverflow.com/questions/47129173/how-to-convert-uint-to-string-in-solidity
-    function uint2str(uint256 _i) internal pure returns(string memory str) {
-        if (_i == 0) {
-            return "0";
-        }
-
-        uint256 j = _i;
-        uint256 length;
-        while (j != 0) {
-            length++;
-            j /= 10;
-        }
-
-        bytes memory bstr = new bytes(length);
-        uint256 k = length;
-
-        j = _i;
-        while (j != 0) {
-            bstr[--k] = bytes1(uint8(48 + j % 10));
-            j /= 10;
-        }
-
-        str = string(bstr);
     }
 }
