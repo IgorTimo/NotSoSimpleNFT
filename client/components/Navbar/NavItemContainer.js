@@ -29,9 +29,11 @@ export const NavItemContainer = ({
       isExpanded={isPanelExpanded}
       collapsibleClassName=""
       titleClassName={
-        link === router.pathname ? 'font-bold text-purplePrimary' : ''
+        link === router.pathname
+          ? 'font-bold text-purplePrimary dark:text-darkPurpleLight'
+          : ''
       }
-      headerClassName="flex items-center h-10 justify-between cursor-pointer  px-[24px] hover:bg-purpleLigth"
+      headerClassName="flex items-center h-10 justify-between cursor-pointer px-[24px] hover:bg-purpleLigth dark:hover:bg-darkPurplePrimary"
     >
       {items.map(({ path, label, key }) => {
         return (
@@ -40,7 +42,7 @@ export const NavItemContainer = ({
             path={path}
             label={label}
             handleLinkClick={handleLinkClick}
-            className={`flex items-center h-10 pl-10 hover:bg-purpleLigth w-full cursor-pointer ${getNavItemActiveClassName(
+            className={`flex items-center h-10 pl-10 hover:bg-purpleLigth dark:hover:bg-darkPurplePrimary w-full cursor-pointer ${getNavItemActiveClassName(
               activePage,
               path,
             )}`}

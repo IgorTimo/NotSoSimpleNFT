@@ -49,7 +49,7 @@ export const Collapse = ({
           <div className={titleClassName}>{title}</div>
           <button type="button" className={iconButtonClassName}>
             <Chevron
-              className={`h-5 w-5 fas-edonec transition duration-300 origin-center ${
+              className={`h-5 w-5 dark fas-edonec transition duration-300 origin-center ${
                 isOpen ? 'rotate-180' : 'rotate-360'
               }`}
             />

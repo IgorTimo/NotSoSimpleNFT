@@ -11,7 +11,7 @@ export const Navbar = ({ navigation }) => {
   }
 
   return (
-    <div className="flex flex-col justify-between bg-[#FFFFFF] text-[#212121] py-7">
+    <div className="flex flex-col justify-between bg-white  text-[#212121] py-7 dark:bg-[#0D0A1C] dark:text-[#ECEFF1]">
       <div>
         <NavbarHeader onLogoClick={handleLogoClick} />
         <NavbarMenu

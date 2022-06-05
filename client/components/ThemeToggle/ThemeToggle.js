@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDarkTheme } from '../../hooks/useDarkTheme'
 import { Moon, Sun } from '../../icons'
 
 export const ThemeToggle = () => {
-  const [isDarkTheme, setDarkTheme] = useState(false)
+  const [colorTheme, setColorTheme] = useDarkTheme()
 
   const switchState = () => {
-    setDarkTheme(!isDarkTheme)
+    setColorTheme(colorTheme)
   }
 
   return (
@@ -20,7 +21,7 @@ export const ThemeToggle = () => {
         onClick={switchState}
         className="absolute z-10 top-[14px] left-[52px] cursor-pointer"
       >
-        <Sun />
+        <Sun color="red" />
       </div>
       <label
         htmlFor="default-toggle"
@@ -38,7 +39,7 @@ export const ThemeToggle = () => {
         border-solid
         bg-transparent 
         rounded-full 
-        ${isDarkTheme ? 'after:translate-x-full' : ''}
+        ${colorTheme === 'dark' ? 'after:translate-x-full' : ''}
         after:content-[''] 
         after:absolute 
         after:top-[2px] 
