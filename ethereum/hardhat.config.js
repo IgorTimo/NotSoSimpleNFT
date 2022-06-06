@@ -18,6 +18,7 @@ module.exports = {
     },
     rinkeby: {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`,
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
     },
   },
   etherscan: {

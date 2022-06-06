@@ -14,7 +14,9 @@
     "compile": "hardhat clean && hardhat compile",
     "build": "hardhat deploy --export-all ../client/your_collectible.json",
     "deploy": "hardhat deploy",
+    "ipfs": "hardhat run scripts/ipfs.mjs",
     "mint": "hardhat run scripts/mint.js",
+    "mint-rinkeby": "hardhat run scripts/mint-rinkeby.js --network rinkeby",
     "test": "hardhat coverage"
   },
   "keywords": [],
@@ -26,10 +28,12 @@
     "chai": "^4.3.6",
     "chai-ethers": "^0.0.1",
     "dotenv": "^16.0.1",
+    "es5-ext": "0.10.53",
     "ethers": "^5.6.8",
     "hardhat": "^2.9.6",
     "hardhat-deploy": "^0.11.10",
     "hardhat-deploy-ethers": "^0.3.0-beta.13",
+    "ipfs-http-client": "^57.0.1",
     "solidity-coverage": "^0.7.21"
   }
 }
