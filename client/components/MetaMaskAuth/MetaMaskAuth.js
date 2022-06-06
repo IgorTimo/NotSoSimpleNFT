@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
 import truncateEthAddress from 'truncate-eth-address'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useWeb3Context } from '../../hooks/useWeb3Context'
 import { ArrowRight, LogoutIcon } from '../../icons'
 import styles from './AuthButton.module.css'
@@ -16,11 +16,8 @@ export const MetaMaskAuth = () => {
     account: currentAccount,
   } = useWeb3Context()
 
-  const [isLoading, setLoading] = useState(true)
-
   const login = async () => {
     try {
-      setLoading(true)
       if (window.ethereum) {
         const provider = new ethers.providers.Web3Provider(window.ethereum)
         const [account] = await window.ethereum.request({
@@ -70,15 +67,12 @@ export const MetaMaskAuth = () => {
       }
     } catch (e) {
       console.log(e)
-    } finally {
-      setLoading(false)
     }
   }
 
   const logout = () => {
     window.sessionStorage.removeItem('account')
     updateWeb3ContextState(web3ContextInitialValues)
-    setLoading(false)
   }
 
   useEffect(() => {
@@ -91,9 +85,7 @@ export const MetaMaskAuth = () => {
   }, [])
 
   // eslint-disable-next-line no-nested-ternary
-  return isLoading ? (
-    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-gray-900"></div>
-  ) : !currentAccount ? (
+  return !currentAccount ? (
     <button type="button" className={styles.button__type_login} onClick={login}>
       <span className="mr-2">Connect wallet</span>
       <ArrowRight />
