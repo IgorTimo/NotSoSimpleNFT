@@ -27,7 +27,7 @@ contract YourCollectible is
         return "https://ipfs.io/ipfs/";
     }
 
-    function mintItem(address to, string memory uri) public returns (uint256) {
+    function mintItem(address to, string memory uri) public onlyOwner returns (uint256) {
         unchecked {
             _tokenIdCounter += 1;
         }
