@@ -524,6 +524,27 @@ module.exports.mochNfts = [
       },
     ],
   },
+  // 26
+  {
+    description: "Boris the Spider",
+    external_url: "https://austingriffith.com/portfolio/paintings/", // <-- this can link to a page for the specific file too
+    image: "https://mrkot.com/wp-content/uploads/2020/04/pauki.jpg",
+    name: "Spider",
+    attributes: [
+      {
+        trait_type: "BackgroundColor",
+        value: "green",
+      },
+      {
+        trait_type: "Eyes",
+        value: "googly",
+      },
+      {
+        trait_type: "Stamina",
+        value: 42,
+      },
+    ],
+  },
 ];
 
 module.exports.mochUploadedHashes = [
@@ -552,4 +573,5 @@ module.exports.mochUploadedHashes = [
   'QmZCmaRs7oVSE1fqgVeSWgxWr7PLYnrMwSPDQ96361Je3c', // 23
   'QmVHi3c4qkZcH3cJynzDXRm5n7dzc9R9TUtUcfnWQvhdcw', // 24
   'QmYwB82hgtF6va7dGyVbLPoAESTd8fYHenr5tBL96v3Etb', // 25
+  'QmfHPDMfSgUykZXFJ8gertdqR71GcQ2y4WUNF5Tfno7xLr', // 26
 ];
