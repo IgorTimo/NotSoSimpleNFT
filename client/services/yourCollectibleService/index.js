@@ -1,0 +1,1 @@
+export { yourCollectibleService } from './yourCollectibleService'
