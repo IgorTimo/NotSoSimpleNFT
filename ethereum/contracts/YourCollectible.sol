@@ -5,7 +5,6 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract YourCollectible is
@@ -14,10 +13,9 @@ contract YourCollectible is
     ERC721URIStorage,
     Ownable
 {
-    using Counters for Counters.Counter;
     using Strings for uint256;
 
-    Counters.Counter private _tokenIdCounter;
+    uint private _tokenIdCounter;
 
     uint private constant MIN_PAGE_NUMBER = 1;
     uint private constant DEFAULT_PAGE_SIZE = 20;
@@ -30,8 +28,10 @@ contract YourCollectible is
     }
 
     function mintItem(address to, string memory uri) public returns (uint256) {
-        _tokenIdCounter.increment();
-        uint256 tokenId = _tokenIdCounter.current();
+        unchecked {
+            _tokenIdCounter += 1;
+        }
+        uint256 tokenId = _tokenIdCounter;
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
         return tokenId;
