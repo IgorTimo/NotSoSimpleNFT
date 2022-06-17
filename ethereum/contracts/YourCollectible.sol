@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.7;
+pragma solidity ^0.8.12;
 
 import "erc721_pagination/contracts/ERC721Pagination.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
