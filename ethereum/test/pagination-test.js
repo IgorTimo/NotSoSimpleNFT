@@ -1,13 +1,12 @@
 const { assert } = require('./chai');
 const { deployments, getNamedAccounts } = require('hardhat');
-const { YIUR_COLLECTIBLE } = require('../constants');
 
-describe(YIUR_COLLECTIBLE, () => {
+describe('YourCollectible', () => {
   it('Should paginate correctly', async () => {
-    await deployments.fixture(YIUR_COLLECTIBLE);
+    await deployments.fixture('YourCollectible');
     const { deployer, user1 } = await getNamedAccounts();
 
-    const yc = await ethers.getContract(YIUR_COLLECTIBLE);
+    const yc = await ethers.getContract('YourCollectible');
 
     await yc.mintItem(deployer, 'url1');
     await yc.mintItem(deployer, 'url2');

@@ -20,6 +20,19 @@ module.exports = {
       url: `https://rinkeby.infura.io/v3/${process.env.INFURA_ID}`,
       accounts: [process.env.DEPLOYER_PRIVATE_KEY],
     },
+    polygon: {
+      url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_API_KEY}/polygon/mainnet`,
+      gasPrice: 1000000000,
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+    },
+    polytest: {
+      url: `https://speedy-nodes-nyc.moralis.io/${process.env.MORALIS_API_KEY}/polygon/mumbai`,
+      gasPrice: 1000000000,
+      accounts: [process.env.DEPLOYER_PRIVATE_KEY],
+      // accounts: {
+      //   mnemonic: mnemonic(),
+      // },
+    },
   },
   etherscan: {
     apiKey: process.env.ETHERSCAN_API_KEY,
