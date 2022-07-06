@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run open-browser && next dev",
+    "dev": "next dev",
+    "dev:browser": "npm run open-browser && next dev",
     "build": "next build",
     "start": "next start",
     "open-browser": "open http://localhost:3000",
