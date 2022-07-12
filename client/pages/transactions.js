@@ -9,6 +9,7 @@ function Transactions() {
   const { data: tokensData } = useAllTokens()
   console.log('transactionsData', transactionsData)
   console.log('tokensData', tokensData)
+
   return (
     <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
       <SeachInput />

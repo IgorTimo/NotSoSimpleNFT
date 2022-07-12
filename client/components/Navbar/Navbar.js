@@ -3,6 +3,7 @@ import { NavbarHeader } from './NavbarHeader'
 import { NavbarMenu } from './NavbarMenu'
 import { NavbarFooter } from './NavbarFooter'
 
+
 export const Navbar = ({ navigation }) => {
   const [activePage, setActivePage] = useState('')
 

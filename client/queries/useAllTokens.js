@@ -10,7 +10,28 @@ export const useAllTokens = () => {
     () => yourCollectibleService.getAllTokens(1, 10),
     {
       enabled: !queryClient.getQueryData(QUERY_KEY),
-      select: (data) => JSON.parse(data),
+      select:
+        //   async (data) => {
+        //   const tokenData = JSON.parse(data)
+        //   // console.log('tokenData: ', tokenData)
+        //   const token = tokenData.tokens[0][1]
+        //   // console.log('token: ', token)
+        //   const res = await fetch(token).then((response) => response.json())
+        //   console.log('res: ', res)
+        // },
+        async (data) => {
+          const tokenData = JSON.parse(data)
+          // console.log('data: ', tokenData.tokens)
+          const tokenURLs = tokenData?.tokens.map((arr) => arr[1])
+          // console.log('urls: ', tokenURLs)
+          const res = await Promise.all(
+            tokenURLs.map((url) =>
+              fetch(url).then((response) => response.json()),
+            ),
+          )
+          // console.log(res)
+          return res
+        },
     },
   )
 

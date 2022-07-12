@@ -22,6 +22,15 @@ module.exports = {
         darkPurplePrimary: '#23175E',
         darkPurpleLight: '#988DC8',
       },
+      width: {
+        defaultWidthPic: '301px',
+      },
+      height: {
+        defaultHeightPic: '243px',
+      },
+      fontFamily: {
+        helvetica: ['Helvetica'],
+      },
     },
   },
   plugins: [],

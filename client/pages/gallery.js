@@ -1,7 +1,11 @@
-import React from 'react'
+import NftPage from '../components/NftCard/NftPage'
 
 function Gallery() {
-  return <h1 className="m-6 text-2xl text-center">Галлерея прекрасного</h1>
+  return (
+    <div className="overflow-y-scroll">
+      <NftPage />
+    </div>
+  )
 }
 
 export default Gallery
