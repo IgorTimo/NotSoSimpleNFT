@@ -10,7 +10,7 @@ export const ThemeToggle = () => {
   }
 
   return (
-    <div className="relative">
+    <div className="fixed bottom-3">
       <div
         onClick={switchState}
         className="absolute z-10 top-[14px] left-[10px] cursor-pointer"

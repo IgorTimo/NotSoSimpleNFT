@@ -1,7 +1,8 @@
 import React from 'react'
+import NftPage from '../components/NftPage/NftPage'
 
 function Gallery() {
-  return <h1 className="m-6 text-2xl text-center">Галлерея прекрасного</h1>
+  return <NftPage />
 }
 
 export default Gallery

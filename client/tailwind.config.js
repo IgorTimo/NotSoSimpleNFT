@@ -7,6 +7,10 @@ module.exports = {
     './TW_components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      gallery: ['Helvetica'],
+    },
+
     extend: {
       gridTemplateColumns: {
         'custom-sidenav-layout': '272px 1fr',
