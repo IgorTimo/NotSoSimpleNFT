@@ -17,12 +17,10 @@ export const useAllTokens = () => {
 
   const result = useQuery(
     [ALL_TOKENS],
-    async () => {
-      const res = await Promise.all(
+    () =>
+      Promise.all(
         urls.map((url) => fetch(url).then((response) => response.json())),
-      )
-      return res
-    },
+      ),
     { enabled: isSuccess && !!urls?.length },
   )
 
