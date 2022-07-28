@@ -6,21 +6,19 @@ import { useState } from "react";
 
 const NftPage = () => {
     const res = useAllTokens().data
-    console.log("result:", res)
+    // comsole.log("", res)
+  const test = res?.map( (el) => {
+        return <NFTCard img={el.image}/>
+    } 
+    )
 
-    const [nftData, setNftData] = useState([])
 
-    // const createNft = () => {
-
-        // return cardImage
 
  
 return ( 
 <div className="container mx-auto">
     <div className="grid grid-cols-3 gap-4">
-        <NFTCard/>
-        <NFTCard/>
-        <NFTCard/>
+        { test }
     </div>
 </div>
  );
