@@ -3,7 +3,7 @@ import NftItem from './NftItem'
 
 const NftPage = () => {
   return (
-    <div className="flex flex-wrap ">
+    <div className="flex flex-wrap">
       <NftItem />
     </div>
   )

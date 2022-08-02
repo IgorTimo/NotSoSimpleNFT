@@ -87,7 +87,7 @@ export const MetaMaskAuth = () => {
   // eslint-disable-next-line no-nested-ternary
   return !currentAccount ? (
     <button type="button" className={styles.button__type_login} onClick={login}>
-      <span className="mr-2">Connect wallet</span>
+      <span className="mr-2 ">Connect wallet</span>
       <ArrowRight />
     </button>
   ) : (
