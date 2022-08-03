@@ -6,9 +6,9 @@ import { useState } from "react";
 
 const NftPage = () => {
     const res = useAllTokens().data
-    // comsole.log("", res)
+    console.log("", res)
   const test = res?.map( (el) => {
-        return <NFTCard img={el.image}/>
+        return <NFTCard img={el.image} title={el.name} desc={el.description}/>
     } 
     )
 
