@@ -1,12 +1,16 @@
 /* eslint-disable prettier/prettier */
-import NftItem from './NftItem'
+import { useAllTokens } from '../../queries'
+import NFTsList from './NFTsList'
 
-const NftPage = () => {
+const NFTListContainer = () => {
+  const { data } = useAllTokens()
   return (
     <div className="flex flex-wrap ">
-      <NftItem />
+      {data?.map(({ image, name }) => (
+        <NFTsList image={image} name={name} />
+      ))}
     </div>
   )
 }
 
-export default NftPage
+export default NFTListContainer

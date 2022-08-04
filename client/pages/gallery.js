@@ -1,8 +1,8 @@
 import React from 'react'
-import NftPage from '../components/NftPage/NftPage'
+import NFTListContainer from '../components/NftPage/NftPage'
 
 function Gallery() {
-  return <NftPage />
+  return <NFTListContainer />
 }
 
 export default Gallery
