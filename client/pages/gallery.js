@@ -1,4 +1,4 @@
-import NftPage from '../components/NftCard/NftPage'
+import NftList from '../components/NftCard/NftList'
 
 import React from 'react'
 
@@ -6,7 +6,7 @@ import React from 'react'
 const Gallery = () =>{
   return (
     <div>
-        <NftPage />
+        <NftList />
     </div>
   )
 }

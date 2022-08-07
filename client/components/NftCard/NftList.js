@@ -4,11 +4,11 @@ import { useState } from "react";
 
 
 
-const NftPage = () => {
+const NftList = () => {
     const res = useAllTokens().data
     console.log("", res)
-  const test = res?.map( (el) => {
-        return <NFTCard img={el.image} title={el.name} desc={el.description}/>
+  const nftList = res?.map( (el) => {
+        return <NFTCard key={el.description} img={el.image} title={el.name} desc={el.description}/>
     } 
     )
 
@@ -18,10 +18,10 @@ const NftPage = () => {
 return ( 
 <div className="container mx-auto">
     <div className="grid grid-cols-3 gap-4">
-        { test }
+        { nftList }
     </div>
 </div>
  );
 }
  
-export default NftPage;
+export default NftList;

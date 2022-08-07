@@ -29,4 +29,14 @@ export const routes = {
       path: '/transactions?filter=sold',
     },
   },
+
+  NftModal: {
+    path: '/NftModal',
+    all: {
+      key: 'NftModal',
+      path: '/NftCard/NftModal',
+    },
+  },
+
+
 }
