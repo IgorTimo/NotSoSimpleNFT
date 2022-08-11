@@ -1,4 +1,4 @@
-const NFTItem = ({ image, name, setActive }) => {
+const NFTItem = ({ image, name }) => {
   return (
     <div className=" w-96 md:w-auto m-7 rounded-xl box-border overflow-hidden">
       <div className="flex xl:flex-col">

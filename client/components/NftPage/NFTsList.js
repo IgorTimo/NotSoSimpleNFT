@@ -1,6 +1,6 @@
 import NFTItem from './NFTItem'
 
-const NFTsList = (props, { setActive }) => {
+const NFTsList = (props) => {
   return (
     <div>
       <NFTItem image={props.image} name={props.name} />
