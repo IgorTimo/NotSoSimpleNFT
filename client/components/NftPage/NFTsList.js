@@ -1,14 +1,9 @@
-/* eslint-disable prettier/prettier */
-import { useAllTokens } from '../../queries'
 import NFTItem from './NFTItem'
 
-const NFTsList = () => {
-  const { data } = useAllTokens()
+const NFTsList = (props, { setActive }) => {
   return (
-    <div className="flex flex-wrap ">
-      {data?.map(({ image, name }) => (
-        <NFTItem image={image} name={name} />
-      ))}
+    <div>
+      <NFTItem image={props.image} name={props.name} />
     </div>
   )
 }
