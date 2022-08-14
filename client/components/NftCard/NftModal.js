@@ -1,18 +1,33 @@
 import NFTCard from '@components/NftCard/NftCard';
 import React from 'react'
 
-const NftModal = ({ children }) => ( 
-        <div className='h-screen'>
-        <div>
-                <h1>Превед Медвед!</h1>
 
-                <NFTCard {...children} />
+
+const NftModal = () => {
+  return( 
+<div>
+  Привет
         </div>
-        </div>
-     );
+  )
+  };
+
 
  
 export default NftModal;
+
+
+// const NftModal = ({ id }) => ( 
+//         <div className='h-screen'>
+//         <div>
+//                 <h1>Превед Медвед!</h1>
+
+//                 <NFTCard { ...id } />
+//         </div>
+//         </div>
+//      );
+
+ 
+// export default NftModal;
 
 
 
