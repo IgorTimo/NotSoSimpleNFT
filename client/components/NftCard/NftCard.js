@@ -2,23 +2,21 @@ import React from 'react'
 // import {useNavigate} from 'react-router-dom';
 
 import Link from 'next/link'
-import NFTCardData from './NFTCardData'
+import NftCardData from './NftCardData'
 
-const NftCard = (props) => {
-  console.log('props', props)
+const NftCard = (img, desc, title) => {
+  // console.log('props', props)
 
   console.log('NFTCard', NftCard)
 
   return (
     <div className="flex justify-center">
-      <NFTCardData>
+      <NftCardData props={NftCardData}>
         <div className="rounded-lg shadow-lg bg-white max-w-sm">
-          <img className="rounded-t-lg" src={props.img} alt="" />
+          <img className="rounded-t-lg" src={img} alt="" />
           <div className="p-6">
-            <h1 className="text-gray-900 text-xl font-bold mb-2">
-              {props.title}
-            </h1>
-            <p className="text-gray-700 text-base mb-4"> {props.desc} </p>
+            <h1 className="text-gray-900 text-xl font-bold mb-2">{title}</h1>
+            <p className="text-gray-700 text-base mb-4"> {desc} </p>
             <Link href="/NftModal">
               <button
                 component="a"
@@ -30,7 +28,7 @@ const NftCard = (props) => {
             </Link>
           </div>
         </div>
-      </NFTCardData>
+      </NftCardData>
     </div>
   )
 }

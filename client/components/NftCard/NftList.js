@@ -1,7 +1,8 @@
 import { loadGetInitialProps } from 'next/dist/shared/lib/utils'
 import NftCard from './NftCard'
+import NFTCardData from './NftCardData'
 
-const NftList = () => {
+const NftList = (props) => {
   //     const res = useAllTokens().data
   //     // console.log("", res)
   //   const nftList = res?.map( (el) => {
@@ -13,7 +14,7 @@ const NftList = () => {
   return (
     <div className="container mx-auto">
       <div className="grid grid-cols-4 gap-6">
-        <NftCard />
+        <NftCard props={props.NftCard} />
       </div>
     </div>
   )

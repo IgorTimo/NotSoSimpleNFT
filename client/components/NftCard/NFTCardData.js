@@ -1,13 +1,14 @@
 import { useAllTokens } from 'queries'
+import NftCard from './NftCard'
 import NftItem from './NftItem'
 
-const NFTCardData = () => {
+const NftCardData = (props) => {
   const res = useAllTokens().data
   //   console.log(`res`, res)
 
   return res?.map((el) => {
-    return (res = (
-      <NftItem
+    const test = res?.map((el) => (
+      <NftCardData
         key={el.description}
         img={el.image}
         title={el.name}
@@ -17,4 +18,4 @@ const NFTCardData = () => {
   })
 }
 
-export default NFTCardData
+export default NftCardData
