@@ -1,13 +1,13 @@
 import NftList from '../components/NftCard/NftList'
+import { Modal } from '@components/Modal/Modal'
+import React, { useState } from 'react'
 
-import React from 'react'
-
-
-const Gallery = () =>{
+const Gallery = (props) => {
   return (
     <div>
-        <NftList />
+      <NftList />
+      <Modal img={props.image} />
     </div>
   )
 }
-export default Gallery;
+export default Gallery

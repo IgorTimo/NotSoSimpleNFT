@@ -1,18 +1,22 @@
 import NFTCard from './NftCard'
 import { useAllTokens } from 'queries'
 import { useState } from 'react'
+import { Modal } from '@components/Modal/Modal'
 
-const NftList = () => {
+const NftList = (props) => {
   const res = useAllTokens().data
+
   console.log('', res)
   const nftList = res?.map((el) => {
     return (
-      <NFTCard
-        key={el.description}
-        img={el.image}
-        title={el.name}
-        desc={el.description}
-      />
+      <>
+        <NFTCard
+          key={el.description}
+          img={el.image}
+          title={el.name}
+          desc={el.description}
+        />
+      </>
     )
   })
 

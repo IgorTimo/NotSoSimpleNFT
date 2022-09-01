@@ -3,6 +3,7 @@ import React from 'react'
 import { useAllTokens } from 'queries'
 import Link from 'next/link'
 import ButtonModal from '@components/buttons/buttonModal'
+import { Modal } from '@components/Modal/Modal'
 
 const NFTCard = ({ img, title, desc }) => {
   console.log(NFTCard)

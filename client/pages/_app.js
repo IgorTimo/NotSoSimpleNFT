@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { Layout } from '../components/Layout'
 import { Web3Provider, AppContextProvider } from '../contexts'
 import { ErrorBoundary } from '../components/ErrorBoundary'
+import { Provider } from '@components/Modal/Context'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,9 +21,11 @@ function Application({ Component, pageProps }) {
       <ErrorBoundary>
         <Web3Provider>
           <AppContextProvider>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
+            <Provider>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </Provider>
           </AppContextProvider>
         </Web3Provider>
       </ErrorBoundary>
