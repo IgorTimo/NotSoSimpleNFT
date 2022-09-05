@@ -5,14 +5,26 @@ import { Context } from './Context'
 const Modal = () => {
   const { modalShown, handleToggleClick } = useContext(Context)
 
-  const res = useAllTokens().data
+  const dataWithId = useAllTokens().data?.map((el) => {
+    return {
+      ...el,
+      id: el.image,
+    }
+  })
+
+  console.log('dataWithId', dataWithId)
 
   return modalShown ? (
     <>
       <div className="modal-backdrop" onClick={handleToggleClick}>
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <button onClick={handleToggleClick}>Close</button>
-          <img className="rounded-t-lg" src={res[1].image} alt="" />
+          <img
+            className="rounded-t-lg"
+            src={dataWithId[2].image}
+            alt=""
+            key={dataWithId.id}
+          />
         </div>
       </div>
     </>

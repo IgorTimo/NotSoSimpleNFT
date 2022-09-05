@@ -3,7 +3,7 @@ import { useAllTokens } from 'queries'
 import { useState } from 'react'
 import { Modal } from '@components/Modal/Modal'
 
-const NftList = (props) => {
+const NftList = () => {
   const res = useAllTokens().data
 
   console.log('', res)
