@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAllTokens } from '../../queries'
-import Modal from './Modal'
+import Modal from '../Modal/Modal'
+import NFTItem from './NFTItem'
 import NFTsList from './NFTsList'
 
 const NFTListContainer = () => {
@@ -13,8 +14,8 @@ const [selectedItem, setSelectedItem] = useState(undefined)
     id: el.image}
   }) 
 const handleNftItemClick = (id) => {
- const nameId = dataWithId.find(el => el.id === id ); 
- setSelectedItem(nameId)
+ const focusedItem = dataWithId.find(el => el.id === id ); 
+ setSelectedItem(focusedItem)
 }
   return (
     <>
@@ -23,11 +24,12 @@ const handleNftItemClick = (id) => {
         onClick={() => setModalActive(true)}
       >
         {dataWithId?.map(({ image, name, id }) => (
-          <NFTsList image={image} name={name} id={id} handleNftItemClick={handleNftItemClick}/>
+           <NFTItem image={image} name={name} id={id} handleNftItemClick={handleNftItemClick}/>
+         
         ))}
       </div>
       <div>
-        <Modal active={modalActive} setActive={setModalActive} name={selectedItem?.name} />
+        <Modal active={modalActive} setActive={setModalActive}>{selectedItem?.description}</Modal>
       </div>
     </>
   )
