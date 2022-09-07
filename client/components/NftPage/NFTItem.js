@@ -1,6 +1,12 @@
-const NFTItem = ({ image, name }) => {
+const NFTItem = ({ image, name, id, handleNftItemClick }) => {
+  const handleOnItemClick = () => {
+    handleNftItemClick(id)
+  }
   return (
-    <div className=" w-96 md:w-auto m-7 rounded-xl box-border overflow-hidden">
+    <div
+      className=" w-96 md:w-auto m-7 rounded-xl box-border overflow-hidden cursor-pointer"
+      onClick={handleOnItemClick}
+    >
       <div className="flex xl:flex-col">
         <div className="md:shrink-0">
           <img
