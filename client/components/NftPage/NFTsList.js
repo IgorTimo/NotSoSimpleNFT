@@ -1,9 +1,19 @@
 import NFTItem from './NFTItem'
 
-const NFTsList = (props) => {
+const NFTsList = ({ data, setElementToState }) => {
+  const handleItemClick = (identifier) => {
+    return () => {
+      setElementToState(identifier)
+    }
+  }
+
   return (
     <div>
-      <NFTItem image={props.image} name={props.name} />
+      {data?.map(({ image, name, desc, id }) => (
+        <span onClick={handleItemClick(id)} key={id} className="cursor-pointer">
+          <NFTItem image={image} name={name} desc={desc} />
+        </span>
+      ))}
     </div>
   )
 }

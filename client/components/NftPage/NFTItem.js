@@ -1,4 +1,4 @@
-const NFTItem = ({ image, name }) => {
+const NFTItem = ({ image, name, desc }) => {
   return (
     <div className=" w-96 md:w-auto m-7 rounded-xl box-border overflow-hidden">
       <div className="flex xl:flex-col">
@@ -6,6 +6,7 @@ const NFTItem = ({ image, name }) => {
           <img
             src={image}
             alt={name}
+            desc={desc}
             className="w-96 h-72 xl:w-64 2xl:w-72 rounded-md"
           />
         </div>
