@@ -6,16 +6,14 @@ import { useAllTokens } from '../../queries'
 const NFTListContainer = () => {
   const [modalActive, setModalActive] = useState(false)
   const { data } = useAllTokens()
-  const [elementId, setElementId] = useState(undefined)
+  const [elementId, setElementId] = useState(null)
 
   const dataWithId =
-    data?.map((el) => {
-      return { ...el, id: el.image, desc: el.description }
-    }) || []
+    data?.map((el) => ({ ...el, id: el.image, desc: el.description })) || []
 
   const elInModal = dataWithId.find((el) => el.id === elementId)
 
-  const setElementToState = (id) => {
+  const setToggleModal = (id) => {
     setElementId(id)
     setModalActive(true)
   }
@@ -23,7 +21,7 @@ const NFTListContainer = () => {
   return (
     <>
       <div className="flex flex-wrap w-full">
-        <NFTsList data={dataWithId} setElementToState={setElementToState} />
+        <NFTsList data={dataWithId} setToggleModal={setToggleModal} />
       </div>
       <div>
         <Modal

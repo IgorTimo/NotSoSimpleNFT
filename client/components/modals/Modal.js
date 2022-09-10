@@ -16,7 +16,6 @@ const Modal = ({ active, setActive, name, desc }) => {
       >
         <div className="flex justify-between" onClick={handleToggleClick}>
           <div>{name}</div>
-          {/* <div>PRICE</div> */}
         </div>
         <div>{desc}</div>
       </div>

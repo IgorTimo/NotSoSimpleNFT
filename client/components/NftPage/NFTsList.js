@@ -1,9 +1,9 @@
 import NFTItem from './NFTItem'
 
-const NFTsList = ({ data, setElementToState }) => {
+const NFTsList = ({ data, setToggleModal }) => {
   const handleItemClick = (identifier) => {
     return () => {
-      setElementToState(identifier)
+      setToggleModal(identifier)
     }
   }
 
@@ -13,7 +13,7 @@ const NFTsList = ({ data, setElementToState }) => {
         <span onClick={handleItemClick(id)} key={id} className="cursor-pointer">
           <NFTItem image={image} name={name} desc={desc} />
         </span>
-      ))}
+      )) || []}
     </div>
   )
 }
