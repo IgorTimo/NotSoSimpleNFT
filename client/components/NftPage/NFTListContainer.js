@@ -24,12 +24,10 @@ const NFTListContainer = () => {
         <NFTsList data={dataWithId} setToggleModal={setToggleModal} />
       </div>
       <div>
-        <Modal
-          active={modalActive}
-          setActive={setModalActive}
-          name={elInModal?.name}
-          desc={elInModal?.description}
-        />
+        <Modal active={modalActive} setActive={setModalActive}>
+          <h2>{elInModal?.name}</h2>
+          <p>{elInModal?.description}</p>
+        </Modal>
       </div>
     </>
   )

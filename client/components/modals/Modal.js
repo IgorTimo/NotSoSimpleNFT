@@ -1,4 +1,4 @@
-const Modal = ({ active, setActive, name, desc }) => {
+const Modal = ({ active, setActive, children }) => {
   const handleToggleClick = () => {
     setActive()
   }
@@ -15,9 +15,8 @@ const Modal = ({ active, setActive, name, desc }) => {
         onClick={handleStopPropag}
       >
         <div className="flex justify-between" onClick={handleToggleClick}>
-          <div>{name}</div>
+          <div>{children}</div>
         </div>
-        <div>{desc}</div>
       </div>
     </div>
   ) : null
